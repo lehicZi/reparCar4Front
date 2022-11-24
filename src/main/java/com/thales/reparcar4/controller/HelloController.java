@@ -24,11 +24,13 @@ public class HelloController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         GluonObservableObject<Individu> ind = getIndividu(5);
+
         ind.initializedProperty().addListener((obs, ov, nv) -> {
             if (nv && ind.get() != null) {
                 text.setText(ind.get().toString());
             }
         });
+
 
         btn.setOnMouseClicked(mouseEvent -> {
             Individu cho = new Individu("jojomal", "00222", "jean", "jack", "mdp", "CACA");

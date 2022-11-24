@@ -19,8 +19,8 @@ public class ReparCarApplication extends Application {
     public static AnchorPane root;
     public static Map<String, Node> screens = new HashMap<>();
     private static String currentScreen = "login-screen";
-    public static int APPWIDTH = 600;
-    public static int APPLENGHT = 400;
+    public static int APPWIDTH = 910;
+    public static int APPLENGHT = 500;
 
     private static Individu connectedUser;
 
@@ -29,16 +29,6 @@ public class ReparCarApplication extends Application {
 
         root = (AnchorPane) FXMLLoader.load(getClass().getResource("root.fxml"));
         screens.put("login-screen",(BorderPane) FXMLLoader.load(getClass().getResource("login-screen.fxml")));
-
-        /*
-        screens.put("hello",(VBox) FXMLLoader.load(getClass().getResource("hello-view.fxml")));
-
-        screens.put("pageAccueil",(BorderPane) FXMLLoader.load(getClass().getResource("pageAccueil.fxml")));
-        screens.put("GestionUtilisateur",(BorderPane) FXMLLoader.load(getClass().getResource("GestionUtilisateur.fxml")));
-        screens.put("GestionProduit",(BorderPane) FXMLLoader.load(getClass().getResource("GestionProduit.fxml")));
-        screens.put("GestionStockEtape1",(BorderPane) FXMLLoader.load(getClass().getResource("GestionStockEtape1.fxml")));
-
-         */
 
         root.getChildren().add(screens.get(currentScreen));
 

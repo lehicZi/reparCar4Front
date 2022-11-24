@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="474.0" prefWidth="704.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="910.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <Pane prefHeight="74.0" prefWidth="704.0" BorderPane.alignment="CENTER">
+      <Pane prefHeight="74.0" prefWidth="910.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="208.0" layoutY="13.0" prefHeight="52.0" prefWidth="275.0" text="CATEGORIES" textFill="#c92525">
+            <Label alignment="CENTER" layoutX="142.0" layoutY="13.0" prefHeight="52.0" prefWidth="641.0" text="AJOUT CATEGORIE" textFill="#b41717">
                <font>
-                  <Font name="System Bold" size="25.0" />
+                  <Font name="Britannic Bold" size="36.0" />
                </font>
             </Label>
          </children>
@@ -30,26 +37,53 @@
             <RowConstraints maxHeight="247.79994812011722" minHeight="10.0" prefHeight="72.79997558593749" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label alignment="CENTER" prefHeight="21.0" prefWidth="354.0" text="Nom catégorie" textAlignment="JUSTIFY" GridPane.rowIndex="2" />
+            <Label alignment="CENTER" prefHeight="21.0" prefWidth="354.0" text="Nom catégorie" textAlignment="JUSTIFY" GridPane.rowIndex="2">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
             <TextField id="txtCode" fx:id="idCOde" prefHeight="12.0" prefWidth="319.0" GridPane.columnIndex="1" />
             <TextField id="txtDescription" fx:id="idDescr" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField id="txtNomCat" fx:id="idNomCat" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField id="txtDateDebut" fx:id="idDateDeb" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField id="txtDateFin" fx:id="idDateFin" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Label alignment="CENTER" prefHeight="21.0" prefWidth="354.0" text="Description" textAlignment="JUSTIFY" GridPane.rowIndex="1" />
-            <Label alignment="CENTER" prefHeight="21.0" prefWidth="354.0" text="Code" textAlignment="JUSTIFY" />
-            <Label alignment="CENTER" prefHeight="21.0" prefWidth="354.0" text="Date de début" textAlignment="JUSTIFY" GridPane.rowIndex="3" />
-            <Label alignment="CENTER" prefHeight="21.0" prefWidth="354.0" text="Date de fin" textAlignment="JUSTIFY" GridPane.rowIndex="4" />
+            <Label alignment="CENTER" prefHeight="21.0" prefWidth="354.0" text="Description" textAlignment="JUSTIFY" GridPane.rowIndex="1">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <Label alignment="CENTER" prefHeight="21.0" prefWidth="354.0" text="Code" textAlignment="JUSTIFY">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <Label alignment="CENTER" prefHeight="21.0" prefWidth="354.0" text="Date de début" textAlignment="JUSTIFY" GridPane.rowIndex="3">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <Label alignment="CENTER" prefHeight="21.0" prefWidth="354.0" text="Date de fin" textAlignment="JUSTIFY" GridPane.rowIndex="4">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
          </children>
       </GridPane>
    </center>
    <bottom>
       <HBox alignment="CENTER" prefHeight="63.0" prefWidth="704.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="idRefresh" mnemonicParsing="false" onAction="#Refresh" text="Refresh" />
-            <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#addCat" text="Ajouter" textAlignment="CENTER" />
-            <Button fx:id="btnAnnul" contentDisplay="CENTER" mnemonicParsing="false" onAction="#annulAndClose" text="Annuler" textAlignment="CENTER" />
+            <Button fx:id="idRefresh" mnemonicParsing="false" onAction="#Refresh" text="Refresh">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#addCat" prefHeight="35.0" prefWidth="76.0" text="Ajouter" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Button>
+            <Button fx:id="btnAnnul" contentDisplay="CENTER" mnemonicParsing="false" onAction="#annulAndClose" text="Annuler" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
          </children>
       </HBox>
    </bottom>
+   <right>
+      <Pane prefHeight="363.0" prefWidth="135.0" BorderPane.alignment="CENTER" />
+   </right>
 </BorderPane>
