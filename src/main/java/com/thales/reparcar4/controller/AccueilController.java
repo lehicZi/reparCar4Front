@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,11 +22,14 @@ public class AccueilController implements Initializable {
     public Button btnVStock;
     @FXML
     public Button btnExit;
+    @FXML
+    public Label lbUser;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeButtons();
         setButtonsVisibility();
+        initializeTxt();
     }
 
     private void setButtonsVisibility(){
@@ -78,5 +82,9 @@ public class AccueilController implements Initializable {
             Platform.exit();
         });
 
+    }
+
+    private void initializeTxt(){
+        this.lbUser.setText("*** " + ReparCarApplication.getUser().getPrenom() + " " + ReparCarApplication.getUser().getNom() + " ***");
     }
 }
