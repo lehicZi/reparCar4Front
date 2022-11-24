@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="474.0" prefWidth="704.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <Pane prefHeight="74.0" prefWidth="704.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="208.0" layoutY="13.0" prefHeight="52.0" prefWidth="275.0" text="UTILISATEUR" textFill="#c92525">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </top>
+   <center>
+      <GridPane prefHeight="253.0" prefWidth="704.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="127.79998626708985" minHeight="10.0" prefHeight="64.59999389648438" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="205.40000762939454" minHeight="10.0" prefHeight="61.40000610351562" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="247.79994812011722" minHeight="10.0" prefHeight="68.80001220703124" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="247.79994812011722" minHeight="10.0" prefHeight="56.79998779296878" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="247.79994812011722" minHeight="10.0" prefHeight="72.79997558593749" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="247.79994812011722" minHeight="10.0" prefHeight="72.79997558593749" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="247.79994812011722" minHeight="10.0" prefHeight="72.79997558593749" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label alignment="CENTER" prefHeight="21.0" prefWidth="354.0" text="Role" textAlignment="JUSTIFY" GridPane.rowIndex="5" />
+            <TextField fx:id="txtId" prefHeight="26.0" prefWidth="326.0" GridPane.columnIndex="1" />
+            <TextField fx:id="txtNom" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtemail" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txtTel" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label alignment="CENTER" prefHeight="21.0" prefWidth="354.0" text="Nom" textAlignment="JUSTIFY" GridPane.rowIndex="1" />
+            <Label alignment="CENTER" prefHeight="21.0" prefWidth="354.0" text="Identifiant" textAlignment="JUSTIFY" />
+            <Label alignment="CENTER" prefHeight="21.0" prefWidth="354.0" text="email" textAlignment="JUSTIFY" GridPane.rowIndex="3" />
+            <Label alignment="CENTER" prefHeight="21.0" prefWidth="354.0" text="Téléphone" textAlignment="JUSTIFY" GridPane.rowIndex="4" />
+            <Label alignment="CENTER" prefHeight="21.0" prefWidth="354.0" text="Prenom" textAlignment="JUSTIFY" GridPane.rowIndex="2" />
+            <Label alignment="CENTER" prefHeight="21.0" prefWidth="354.0" text="Mot de passe" textAlignment="JUSTIFY" GridPane.rowIndex="6" />
+            <TextField fx:id="txtRole" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="txtMdp" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="txtPrenom" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         </children>
+      </GridPane>
+   </center>
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="63.0" prefWidth="704.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnRefresh" mnemonicParsing="false" text="Refresh" textAlignment="CENTER" />
+            <Button fx:id="btnAdd" mnemonicParsing="false" text="Ajouter" textAlignment="CENTER" />
+            <Button fx:id="bntExit" contentDisplay="CENTER" mnemonicParsing="false" text="Annuler" textAlignment="CENTER" />
+         </children>
+         <opaqueInsets>
+            <Insets right="20.0" />
+         </opaqueInsets>
+      </HBox>
+   </bottom>
+   <right>
+      <Pane prefHeight="337.0" prefWidth="34.0" BorderPane.alignment="CENTER" />
+   </right>
+</BorderPane>
