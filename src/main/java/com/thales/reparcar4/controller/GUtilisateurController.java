@@ -4,7 +4,9 @@ import com.gluonhq.connect.GluonObservableList;
 import com.gluonhq.connect.GluonObservableObject;
 import com.gluonhq.connect.provider.DataProvider;
 import com.gluonhq.connect.provider.RestClient;
+import com.thales.reparcar4.ReparCarApplication;
 import com.thales.reparcar4.model.Individu;
+import javafx.beans.property.ObjectProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -36,12 +38,13 @@ public class GUtilisateurController implements Initializable {
     @FXML
     public HBox enTete;
 
-    private List<Individu> individus;
+    private ObjectProperty<Individu> selectedUser;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initiateTable();
         setEntete();
+        initializeButtons();
 
     }
 
@@ -77,7 +80,27 @@ public class GUtilisateurController implements Initializable {
 
         this.tableVieuwUser.setItems(getAllIndividus());
 
+        this.tableVieuwUser.getSelectionModel().selectedItemProperty().addListener((observableValue, o, t1) -> {
+            System.out.println(t1);
+            selectedUser.setValue((Individu) t1);
+        });
+
     }
+
+    private void initializeButtons(){
+        this.btnAdd.setOnMouseClicked(mouseEvent -> {
+            ReparCarApplication.setScreen("userAdd");
+        });
+    }
+
+    private void initializeSelection(){
+
+        this.selectedUser.addListener((observableValue, individu, t1) -> {
+
+            this.tAreaSelectUser.setText("Id : "  + t1.getId() + "\n" );
+        });
+    }
+
 
     private void setEntete(){
         Label title = (Label) enTete.getChildren().get(2);
