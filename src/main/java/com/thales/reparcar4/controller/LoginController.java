@@ -44,11 +44,15 @@ public class LoginController implements Initializable {
             PotentialConnected.setOnSucceeded(connectStateEvent -> {
                 ReparCarApplication.setUser(PotentialConnected.get());
                 ReparCarApplication.setScreen("pageAccueil");
+                txtEmail.clear();
+                txtMdp.clear();
+                lbErreur.setVisible(false);
             });
 
             PotentialConnected.setOnFailed(connectStateEvent -> {
                 lbErreur.setVisible(true);
             });
+
 
         });
     }

@@ -30,8 +30,19 @@ public class AccueilController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeButtons();
-        setButtonsVisibility();
+        initializeButtonsVisibility();
         initializeTxt();
+    }
+
+    private void initializeButtonsVisibility(){
+        setButtonsVisibility();
+        ReparCarApplication.userProperty().addListener(observable -> {
+            btnVStock.setVisible(false);
+            btnProd.setVisible(false);
+            btnUser.setVisible(false);
+            btnGStock.setVisible(false);
+            setButtonsVisibility();
+        });
     }
 
     private void setButtonsVisibility(){
