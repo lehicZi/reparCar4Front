@@ -61,6 +61,9 @@ public class ReparCarApplication extends Application {
         return connectedUser;
     }
 
+    private void initialInsert(){
+
+    }
     public static void main(String[] args) {
         launch();
     }

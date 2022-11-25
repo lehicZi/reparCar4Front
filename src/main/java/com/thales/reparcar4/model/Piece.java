@@ -20,6 +20,9 @@ public class Piece {
 	private int stock;
 
 	private int disponible;
+
+	@NonNull
+	private float poids;
 	
 	@NonNull
 	private String couleur;

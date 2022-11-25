@@ -6,6 +6,7 @@ import com.gluonhq.connect.provider.RestClient;
 import com.thales.reparcar4.ReparCarApplication;
 import com.thales.reparcar4.model.Individu;
 import com.thales.reparcar4.model.Login;
+import com.thales.reparcar4.utils.HttpRequests;
 import com.thales.reparcar4.utils.JsonUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -38,7 +39,7 @@ public class LoginController implements Initializable {
 
         btnConnexion.setOnMouseClicked(mouseEvent -> {
 
-            GluonObservableObject<Individu> PotentialConnected = tryLogin(new Login(txtEmail.getText(), txtMdp.getText()));
+            GluonObservableObject<Individu> PotentialConnected = HttpRequests.tryLogin(new Login(txtEmail.getText(), txtMdp.getText()));
 
             PotentialConnected.setOnSucceeded(connectStateEvent -> {
                 ReparCarApplication.setUser(PotentialConnected.get());
@@ -50,18 +51,5 @@ public class LoginController implements Initializable {
             });
 
         });
-    }
-
-    private GluonObservableObject<Individu> tryLogin(Login login){
-
-        RestClient client = RestClient.create()
-                .method("POST")
-                .host("http://localhost:8080/reparcar/api/individus/connect")
-                .connectTimeout(10000)
-                .readTimeout(1000)
-                .dataString(JsonUtils.getStringJson(login))
-                .contentType("application/json");
-
-        return DataProvider.retrieveObject(client.createObjectDataReader(Individu.class));
     }
 }

@@ -15,7 +15,7 @@
    <top>
       <Pane prefHeight="74.0" prefWidth="704.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" layoutX="122.0" layoutY="13.0" prefHeight="52.0" prefWidth="717.0" text="AJOUT VEHICULE" textFill="#b41717">
+            <Label alignment="CENTER" layoutX="15.0" layoutY="13.0" prefHeight="52.0" prefWidth="824.0" text="VEHICULE" textFill="#b41717">
                <font>
                   <Font name="Britannic Bold" size="36.0" />
                </font>
@@ -80,7 +80,7 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="63.0" prefWidth="704.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnRefresh" mnemonicParsing="false" text="Refresh" />
+            <Button fx:id="btnRefresh" mnemonicParsing="false" text="Reset" />
             <Button fx:id="btnAdd" mnemonicParsing="false" text="Ajouter" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="15.0" />
