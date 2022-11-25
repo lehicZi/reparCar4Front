@@ -9,6 +9,7 @@ Il comprend un ajout automatique d'un jeu de données, il est donc possible de s
 - mail: lili1@gmail.com, mdp : RECAP.2022!, droits : MAGASINIER
 
 La BDD s'appelle reparcar et est hébergée sur le port 3306.
+Le back tourne sur le port 8080.
 
 Concernant les features implémentées :
 - Login
