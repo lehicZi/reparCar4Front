@@ -26,7 +26,7 @@ public class Individu {
 	private String prenom;
 
 	@NonNull
-	private String motDePasse;
+	private String motDePasse = "Reparcar.2022!";
 
 	@NonNull
 	private String role;

@@ -62,4 +62,17 @@ public class HttpRequests {
 
         return DataProvider.retrieveObject(client.createObjectDataReader(Individu.class));
     }
+
+    public static GluonObservableObject<Individu> addIndividu(Individu individu){
+
+        RestClient client = RestClient.create()
+                .method("POST")
+                .host("http://localhost:8080/reparcar/api/individus/")
+                .connectTimeout(10000)
+                .readTimeout(1000)
+                .dataString(JsonUtils.getStringJson(individu))
+                .contentType("application/json");
+
+        return DataProvider.retrieveObject(client.createObjectDataReader(Individu.class));
+    }
 }

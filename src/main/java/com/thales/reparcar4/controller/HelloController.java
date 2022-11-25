@@ -33,9 +33,9 @@ public class HelloController implements Initializable {
 
 
         btn.setOnMouseClicked(mouseEvent -> {
-            Individu cho = new Individu("jojomal", "00222", "jean", "jack", "mdp", "CACA");
-            System.out.println(cho);
-            addIndividu(cho);
+            //Individu cho = new Individu("jojomal", "00222", "jean", "jack", "mdp", "CACA");
+            //System.out.println(cho);
+            //addIndividu(cho);
         });
 
 

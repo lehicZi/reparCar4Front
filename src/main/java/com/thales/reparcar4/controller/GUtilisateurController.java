@@ -6,6 +6,7 @@ import com.gluonhq.connect.provider.DataProvider;
 import com.gluonhq.connect.provider.RestClient;
 import com.thales.reparcar4.ReparCarApplication;
 import com.thales.reparcar4.model.Individu;
+import com.thales.reparcar4.utils.AddUpdateSingleton;
 import com.thales.reparcar4.utils.HttpRequests;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -53,6 +54,7 @@ public class GUtilisateurController implements Initializable {
         initializeButtons();
         initializeSelection();
         initializeSearch();
+        initializeUpdate();
     }
 
     private void initiateTable(){
@@ -99,9 +101,22 @@ public class GUtilisateurController implements Initializable {
 
     }
 
+    private void initializeUpdate(){
+        AddUpdateSingleton.getInstance().userUpdatedProperty().addListener(observable -> {
+
+            GluonObservableList<Individu> gotList = HttpRequests.getAllIndividus();
+
+            gotList.setOnSucceeded(connectStateEvent -> {
+                this.users = FXCollections.observableArrayList(gotList);
+                this.tableVieuwUser.setItems(this.users);
+            });
+        });
+    }
+
     private void initializeButtons(){
         this.btnAdd.setOnMouseClicked(mouseEvent -> {
             ReparCarApplication.setScreen("userAdd");
+            AddUpdateSingleton.getInstance().setSelectedUser(null);
         });
 
         this.bntMod.setOnMouseClicked(mouseEvent -> {
@@ -125,14 +140,20 @@ public class GUtilisateurController implements Initializable {
 
         this.selectedUser.addListener((observableValue, individu, t1) -> {
 
-            StringBuilder st = new StringBuilder();
-            st.append("☺ Id : ").append(t1.getId()).append("\n")
-                    .append("☺ Prénom : ").append(t1.getPrenom()).append("\n")
-                    .append("☺ Nom : ").append(t1.getNom()).append("\n")
-                    .append("☺ Email : ").append(t1.getEmail()).append("\n")
-                    .append("☺ Rôle : ").append(t1.getRole()).append("\n");
+            try {
+                StringBuilder st = new StringBuilder();
+                st.append("☺ Id : ").append(t1.getId()).append("\n")
+                        .append("☺ Prénom : ").append(t1.getPrenom()).append("\n")
+                        .append("☺ Nom : ").append(t1.getNom()).append("\n")
+                        .append("☺ Email : ").append(t1.getEmail()).append("\n")
+                        .append("☺ Rôle : ").append(t1.getRole()).append("\n");
 
-            this.tAreaSelectUser.setText(st.toString());
+                this.tAreaSelectUser.setText(st.toString());
+            }
+            catch (NullPointerException e){
+                this.tAreaSelectUser.clear();
+            }
+            AddUpdateSingleton.getInstance().setSelectedUser(t1);
         });
     }
 
@@ -144,7 +165,6 @@ public class GUtilisateurController implements Initializable {
 
             searchedList.setOnSucceeded(connectStateEvent -> {
                 this.users = FXCollections.observableArrayList(searchedList);
-                System.out.println(users);
                 this.tableVieuwUser.setItems(this.users);
             });
 

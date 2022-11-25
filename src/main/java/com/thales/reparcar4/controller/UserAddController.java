@@ -5,7 +5,11 @@ import com.gluonhq.connect.provider.DataProvider;
 import com.gluonhq.connect.provider.RestClient;
 import com.thales.reparcar4.ReparCarApplication;
 import com.thales.reparcar4.model.Individu;
+import com.thales.reparcar4.utils.AddUpdateSingleton;
+import com.thales.reparcar4.utils.HttpRequests;
 import com.thales.reparcar4.utils.JsonUtils;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -39,34 +43,49 @@ public class UserAddController implements Initializable {
     @FXML
     public ComboBox roleBox;
 
+    private Individu selectedUser;
+    private Individu toAdd = new Individu();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeButton();
         initializeBox();
+        initializeAddOrUpdate();
     }
 
     private void initializeButton() {
         btnRefresh.setOnMouseClicked(mouseEvent -> {
-            txtemail.clear();
-            txtTel.clear();
-            txtNom.clear();
-            txtPrenom.clear();
+            reset();
         });
 
         btnAdd.setOnMouseClicked(mouseEvent1 -> {
 
+            this.toAdd.setEmail(txtemail.getText());
+            this.toAdd.setRole(roleBox.valueProperty().get().toString());
+            this.toAdd.setNom(txtNom.getText());
+            this.toAdd.setTelephone(txtTel.getText());
+            this.toAdd.setPrenom(txtPrenom.getText());
 
-            GluonObservableObject<Individu> PotentialConnected =
-                    addIndividu(new Individu(txtemail.getText(),txtTel.getText(),txtNom.getText(),
-                            txtPrenom.getText(),"RECAP.2022!", roleBox.valueProperty().get().toString()));
-
+            GluonObservableObject<Individu> addRequest = HttpRequests.addIndividu(this.toAdd);
+            addRequest.setOnSucceeded(connectStateEvent -> {
+                AddUpdateSingleton.getInstance().setUserUpdated(!AddUpdateSingleton.getInstance().isUserUpdated());
+                ReparCarApplication.setScreen("GestionUtilisateur");
+            });
+            addRequest.setOnFailed(connectStateEvent -> System.out.println(connectStateEvent));
         });
 
         bntExit.setOnMouseClicked(mouseEvent -> {
             ReparCarApplication.setScreen("GestionUtilisateur");
         });
 
+    }
+
+    private void reset() {
+        txtemail.clear();
+        txtTel.clear();
+        txtNom.clear();
+        txtPrenom.clear();
+        this.roleBox.getSelectionModel().selectFirst();
     }
 
     private void initializeBox(){
@@ -81,29 +100,38 @@ public class UserAddController implements Initializable {
         this.roleBox.getSelectionModel().selectFirst();
     }
 
-    private GluonObservableObject<Individu> addIndividu(Individu individu){
+    private void initializeAddOrUpdate(){
+        setAddOrUpdate();
+        AddUpdateSingleton.getInstance().selectedUserProperty().addListener(observable -> {
+            setAddOrUpdate();
+        });
+    }
+    private void setAddOrUpdate(){
 
-        RestClient client = RestClient.create()
-                .method("POST")
-                .host("http://localhost:8080/reparcar/api/individus/")
-                .connectTimeout(10000)
-                .readTimeout(1000)
-                .dataString(JsonUtils.getStringJson(individu))
-                .contentType("application/json");
+        if (AddUpdateSingleton.getInstance().selectedUserProperty().get() == null) {
+            this.selectedUser = null;
+            setAdd();
+        } else {
+            this.selectedUser = AddUpdateSingleton.getInstance().selectedUserProperty().get();
+            setUpdate();
+        }
 
-        return DataProvider.retrieveObject(client.createObjectDataReader(Individu.class));
     }
 
-    private void setAddOrUpdate(){
-        List<String> roles = new ArrayList<>();
-        roles.add("ADMINISTRATIF");
-        roles.add("GESTIONNAIRE");
-        roles.add("MAGASINIER");
+    private void setAdd(){
+        reset();
+        btnAdd.setText("Ajouter");
+        this.toAdd.setId(0);
+    }
 
-        ObservableList<String> oRoles = FXCollections.observableArrayList(roles);
-
-        this.roleBox.setItems(oRoles);
-        this.roleBox.getSelectionModel().selectFirst();
+    private void setUpdate(){
+        this.txtemail.setText(this.selectedUser.getEmail());
+        this.txtNom.setText(this.selectedUser.getNom());
+        this.txtPrenom.setText(this.selectedUser.getPrenom());
+        this.txtTel.setText(this.selectedUser.getTelephone());
+        this.roleBox.getSelectionModel().select(this.selectedUser.getRole());
+        this.toAdd.setId(selectedUser.getId());
+        btnAdd.setText("Modifier");
     }
 
 }
