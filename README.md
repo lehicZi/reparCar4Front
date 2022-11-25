@@ -1,6 +1,6 @@
 Front du projet ReparCar.
 
-Participants : Loïc fornelli, Francis Mauny et Céline Corredora.
+Participants : Loïc fornelli, Francis Mauny et Céline Corredoira.
 
 Il comprend un ajout automatique d'un jeu de données, il est donc possible de se connecter avec les logins suivants :
 
