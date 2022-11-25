@@ -12,5 +12,6 @@ module com.thales.reparcar4 {
     exports com.thales.reparcar4;
     exports com.thales.reparcar4.model;
     exports com.thales.reparcar4.controller;
+    exports com.thales.reparcar4.utils;
     opens com.thales.reparcar4.controller to javafx.fxml;
 }

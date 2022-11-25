@@ -1,7 +1,12 @@
 package com.thales.reparcar4;
 
+import com.gluonhq.connect.GluonObservableList;
+import com.thales.reparcar4.model.Categorie;
 import com.thales.reparcar4.model.Individu;
+import com.thales.reparcar4.utils.HttpRequests;
 import javafx.application.Application;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -21,11 +26,11 @@ public class ReparCarApplication extends Application {
     private static String currentScreen = "login-screen";
     public static int APPWIDTH = 910;
     public static int APPLENGHT = 500;
-
-    private static Individu connectedUser;
+    private static ObjectProperty<Individu> user = new SimpleObjectProperty<Individu>();
 
     @Override
     public void start(Stage stage) throws IOException {
+        initialInsert();
 
         root = (AnchorPane) FXMLLoader.load(getClass().getResource("root.fxml"));
         screens.put("login-screen",(BorderPane) FXMLLoader.load(getClass().getResource("login-screen.fxml")));
@@ -53,16 +58,26 @@ public class ReparCarApplication extends Application {
         currentScreen = screen;
     }
 
-    public static void setUser(Individu user){
-        connectedUser = user;
+    public static Individu getUser() {
+        return user.get();
     }
 
-    public static Individu getUser(){
-        return connectedUser;
+    public static ObjectProperty<Individu> userProperty() {
+        return user;
+    }
+
+    public static void setUser(Individu newUser) {
+        user.set(newUser);
     }
 
     private void initialInsert(){
+        GluonObservableList<Individu> individus = HttpRequests.getAllIndividus();
 
+        individus.setOnSucceeded(connectStateEvent -> {
+            if (individus.isEmpty()){
+                HttpRequests.initialInsert();
+            }
+        });
     }
     public static void main(String[] args) {
         launch();

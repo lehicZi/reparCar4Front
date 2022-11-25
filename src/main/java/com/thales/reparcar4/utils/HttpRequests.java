@@ -4,8 +4,7 @@ import com.gluonhq.connect.GluonObservableList;
 import com.gluonhq.connect.GluonObservableObject;
 import com.gluonhq.connect.provider.DataProvider;
 import com.gluonhq.connect.provider.RestClient;
-import com.thales.reparcar4.model.Individu;
-import com.thales.reparcar4.model.Login;
+import com.thales.reparcar4.model.*;
 
 public class HttpRequests {
 
@@ -75,4 +74,58 @@ public class HttpRequests {
 
         return DataProvider.retrieveObject(client.createObjectDataReader(Individu.class));
     }
+
+    public static GluonObservableList<Piece> getAllPiece(){
+
+        RestClient piece = RestClient.create()
+                .method("GET")
+                .host("http://localhost:8080/reparcar/api/pieces")
+                .connectTimeout(10000)
+                .readTimeout(1000);
+
+        return DataProvider.retrieveList(piece.createListDataReader(Piece.class));
+    }
+
+    public static GluonObservableList<Vehicule> getAllVehicules(){
+        RestClient vehicule = RestClient.create()
+                .method("GET")
+                .host("http://localhost:8080/reparcar/api/vehicules")
+                .connectTimeout(10000)
+                .readTimeout(1000);
+        return DataProvider.retrieveList(vehicule.createListDataReader(Vehicule.class));
+    }
+
+    public static GluonObservableList<Categorie> getAllCategories(){
+        RestClient vehicule = RestClient.create()
+                .method("GET")
+                .host("http://localhost:8080/reparcar/api/categories")
+                .connectTimeout(10000)
+                .readTimeout(1000);
+        return DataProvider.retrieveList(vehicule.createListDataReader(Categorie.class));
+    }
+
+    public static GluonObservableObject<Piece> addPiece(Piece p) {
+
+        RestClient client = RestClient.create()
+                .method("POST")
+                .host("http://localhost:8080/reparcar/api/pieces")
+                .connectTimeout(10000)
+                .readTimeout(1000)
+                .dataString(JsonUtils.getStringJson(p))
+                .contentType("application/json");
+
+        return DataProvider.retrieveObject(client.createObjectDataReader(Piece.class));
+    }
+
+    public static void initialInsert(){
+
+        RestClient client = RestClient.create()
+                .method("GET")
+                .host("http://localhost:8080/reparcar/api/datainsert")
+                .connectTimeout(10000)
+                .readTimeout(1000);
+
+        DataProvider.retrieveObject(client.createObjectDataReader(Individu.class));
+    }
+
 }

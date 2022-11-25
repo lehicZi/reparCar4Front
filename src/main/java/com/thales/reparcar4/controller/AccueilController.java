@@ -24,6 +24,8 @@ public class AccueilController implements Initializable {
     public Button btnExit;
     @FXML
     public Label lbUser;
+    @FXML
+    public Button btnDeco;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -82,9 +84,19 @@ public class AccueilController implements Initializable {
             Platform.exit();
         });
 
+        this.btnDeco.setOnMouseClicked(mouseEvent -> {
+            ReparCarApplication.setScreen("login-screen");
+        });
+
     }
 
     private void initializeTxt(){
+
         this.lbUser.setText("*** " + ReparCarApplication.getUser().getPrenom() + " " + ReparCarApplication.getUser().getNom() + " ***");
+
+        ReparCarApplication.userProperty().addListener(observable -> {
+            this.lbUser.setText("*** " + ReparCarApplication.getUser().getPrenom() + " " + ReparCarApplication.getUser().getNom() + " ***");
+        });
+
     }
 }

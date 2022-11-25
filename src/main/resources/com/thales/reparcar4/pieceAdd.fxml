@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="910.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="910.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thales.reparcar4.controller.PieceAddController">
    <top>
       <Pane prefHeight="74.0" prefWidth="704.0" BorderPane.alignment="CENTER">
          <children>
@@ -37,6 +37,7 @@
           <RowConstraints maxHeight="205.40000762939454" minHeight="10.0" prefHeight="61.40000610351562" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="247.79994812011722" minHeight="10.0" prefHeight="68.80001220703124" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="247.79994812011722" minHeight="10.0" prefHeight="56.79998779296878" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="247.79994812011722" minHeight="10.0" prefHeight="72.79997558593749" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="247.79994812011722" minHeight="10.0" prefHeight="72.79997558593749" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="247.79994812011722" minHeight="10.0" prefHeight="72.79997558593749" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="247.79994812011722" minHeight="10.0" prefHeight="72.79997558593749" vgrow="SOMETIMES" />
@@ -76,8 +77,8 @@
                   <Font size="15.0" />
                </font></Label>
             <TextField fx:id="txtPrixHT" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <ComboBox fx:id="cbCat" prefHeight="26.0" prefWidth="352.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtTVA" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <ComboBox fx:id="cbCategorie" prefHeight="26.0" prefWidth="352.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label alignment="CENTER" prefHeight="21.0" prefWidth="354.0" text="Vehicule" textAlignment="JUSTIFY" GridPane.rowIndex="7">
                <font>
                   <Font size="15.0" />
@@ -88,12 +89,18 @@
                   <Button fx:id="btnAddVeh" mnemonicParsing="false" prefHeight="26.0" prefWidth="61.0" text="Ajouter" />
                </children>
             </HBox>
-            <TextArea fx:id="tAreaListVeh" prefHeight="60.0" prefWidth="424.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <TextArea fx:id="tAreaListVeh" disable="true" prefHeight="60.0" prefWidth="424.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
             <Label alignment="CENTER" prefHeight="21.0" prefWidth="354.0" text="Liste de vehicules associés" textAlignment="JUSTIFY" GridPane.rowIndex="8">
                <font>
                   <Font size="15.0" />
                </font></Label>
-            <ComboBox fx:id="cbColl" prefHeight="26.0" prefWidth="352.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <ComboBox fx:id="cbCouleur" prefHeight="26.0" prefWidth="352.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="423.0" text="Poid" GridPane.rowIndex="9">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtPoid" GridPane.columnIndex="1" GridPane.rowIndex="9" />
          </children>
       </GridPane>
    </center>

@@ -34,6 +34,11 @@ public class EnteteController implements Initializable {
         this.lbUserNom.setText(ReparCarApplication.getUser().getNom());
         this.lbUserPrenom.setText(ReparCarApplication.getUser().getPrenom());
 
+        ReparCarApplication.userProperty().addListener(observable -> {
+            this.lbUserNom.setText(ReparCarApplication.getUser().getNom());
+            this.lbUserPrenom.setText(ReparCarApplication.getUser().getPrenom());
+        });
+
     }
 
     private void initializeButtons(){
