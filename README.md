@@ -15,7 +15,7 @@ Concernant les features implémentées :
 - Login
 - Gestion des droits en fonction du rôle
 - Écran de gestion des utilisateurs
-- Ajout/modification d'un utilisateur (Pas de validateurs)
+- Ajout/modification/suppression d'un utilisateur (Pas de validateurs)
 - Écran de gestion du stock, avec poid du colis poid total des pièces (Pas de possibilité d'ajouter de pièces en base)
 - code des pièces valides : EL/205/12/15, FI/402/12/16, HU/205/12/17, OU/205/12/17
 - Début de la création de la gestion des produits
